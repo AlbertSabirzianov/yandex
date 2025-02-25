@@ -1,3 +1,6 @@
+import functools
+import random
+
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -32,13 +35,27 @@ class SDriver:
             render="WebKit",
             fix_hairline=True
         )
+        self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {
+            'userAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        })
         return self.driver
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.driver.quit()
 
 
+@functools.lru_cache
 def get_picture(q: str) -> bytes:
+    """
+    Получает первое изображение по запросу из поисковика.
+    Использует Selenium для загрузки страницы с результатами поиска и извлекает URL первого изображения.
+
+    Параметры:
+    q (str): Запрос для поиска изображения.
+
+    Возвращает:
+    bytes: Содержимое изображения в байтовом формате.
+    """
     with SDriver() as driver:
         driver.get(Y_URL.replace("<q_text>", q))
         img_element = WebDriverWait(driver, 10).until(
@@ -49,7 +66,25 @@ def get_picture(q: str) -> bytes:
     return response.content
 
 
+def get_random_picture(q: str) -> bytes:
+    """
+    Получает случайное изображение по запросу из поисковика.
+    Использует Selenium для загрузки страницы с результатами поиска и извлекает URL случайного изображения
+    из всех доступных изображений на странице.
 
+    Параметры:
+    q (str): Запрос для поиска изображения.
 
+    Возвращает:
+    bytes: Содержимое изображения в байтовом формате.
+    """
+    with SDriver() as driver:
+        driver.get(Y_URL.replace("<q_text>", q))
+        img_elements = WebDriverWait(driver, 10).until(
+            EC.presence_of_all_elements_located((By.CSS_SELECTOR, "img.ImagesContentImage-Image"))
+        )
+        img_url = random.choice(img_elements).get_attribute("src")
+    response = requests.get(img_url)
+    return response.content
 
 

@@ -8,10 +8,13 @@ pip install -r requirements.txt
 ```
 импортируйте и используйте в своём коде
 ```python
-from yandex.pictures import get_picture
+from yandex.pictures import get_picture, get_random_picture
 
-with open("my_picture.jpeg", "wb") as file:
+with open("first_picture_from_yandex.jpeg", "wb") as file:
     file.write(get_picture("кошечка"))
+
+with open("random_picture_from_yandex.jpeg", "wb") as file:
+    file.write(get_random_picture("кошечка"))
 ```
 
 
