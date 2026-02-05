@@ -2,8 +2,6 @@
 Модуль для получения URL изображений и статей
 с поисковой системы Яндекс с помощью Selenium.
 """
-import time
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service as ChromeService
