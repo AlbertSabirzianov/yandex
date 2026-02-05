@@ -1,20 +1,28 @@
 # yandex
-Модуль, который позволяет получить картинку из поисковика Яндекс
+Библиотека для удобного взаимодействия с поисковой системой Яндекс.
+Позволяет получать ссылки на изображения и статьи по заданному поисковому запросу.
+## Возможности
 
+- Получение URL изображений с Яндекс.Картинок по поисковому запросу.
+- Получение URL статей с Яндекс поиска.
+
+---
 # Как использовать
 установите зависимости
 ```commandline
 pip install -r requirements.txt
 ```
-импортируйте и используйте в своём коде
+Импортируйте и используйте в своём коде
 ```python
-from yandex.pictures import get_picture, get_random_picture
+import yandex
 
-with open("first_picture_from_yandex.jpeg", "wb") as file:
-    file.write(get_picture("кошечка"))
+# список url с изображениями из поисковой системы Яндекс
+cat_picture_urls = yandex.get_picture_urls("cats")
 
-with open("random_picture_from_yandex.jpeg", "wb") as file:
-    file.write(get_random_picture("кошечка"))
+
+# список url со статьями из поисковой системы Яндекс
+cat_article_urls = yandex.get_articles_urls("cats")
+
 ```
 
 
