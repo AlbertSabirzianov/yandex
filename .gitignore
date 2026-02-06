@@ -1,2 +1,6 @@
 venv
 .idea
+build
+dist
+yandex_searcher.egg-info
+api_pypi.txt

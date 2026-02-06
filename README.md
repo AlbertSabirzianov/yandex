@@ -1,5 +1,8 @@
-# yandex
-Библиотека для удобного взаимодействия с поисковой системой Яндекс.
+
+<svg xmlns="http://www.w3.org/2000/svg" width="" height="70" fill="none" viewBox="0 0 26 26"><path fill="#F8604A" d="M26 13c0-7.18-5.82-13-13-13S0 5.82 0 13s5.82 13 13 13 13-5.82 13-13Z"></path><path fill="#fff" d="M17.55 20.822h-2.622V7.28h-1.321c-2.254 0-3.38 1.127-3.38 2.817 0 1.885.758 2.816 2.448 3.943l1.322.932-3.749 5.828H7.237l3.575-5.265c-2.059-1.495-3.185-2.817-3.185-5.265 0-3.012 2.058-5.07 6.023-5.07h3.9v15.622Z"></path></svg>
+
+# yandex-searcher
+<br/>Библиотека для удобного взаимодействия с поисковой системой Яндекс.
 Позволяет получать ссылки на изображения и статьи по заданному поисковому запросу.
 ## Возможности
 
@@ -8,20 +11,20 @@
 
 ---
 # Как использовать
-установите зависимости
+Установите библиотеку
 ```commandline
-pip install -r requirements.txt
+pip install yandex-searcher
 ```
 Импортируйте и используйте в своём коде
 ```python
-import yandex
+import yandexsearcher
 
 # список url с изображениями из поисковой системы Яндекс
-cat_picture_urls = yandex.get_picture_urls("cats")
+cat_picture_urls = yandexsearcher.get_picture_urls("cats")
 
 
 # список url со статьями из поисковой системы Яндекс
-cat_article_urls = yandex.get_articles_urls("cats")
+cat_article_urls = yandexsearcher.get_articles_urls("cats")
 
 ```
 
